@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Athif — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0c17;
+    --bg-alt: #15142450;
+    --surface: #1a1830;
+    --surface-2: #221f3d;
+    --line: #322e54;
+    --text: #eae8f5;
+    --muted: #9591b3;
+    --potion-green: #3ddc97;
+    --potion-purple: #b18cff;
+    --ember: #ff9f5a;
+    --pink-bomb: #ff5c8a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 800px 500px at 15% -10%, #b18cff22, transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, #3ddc9722, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .pixel-font { font-family: 'Press Start 2P', monospace; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(13, 12, 23, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  nav .logo {
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--potion-green);
+  }
+  nav .links { display: flex; gap: 22px; }
+  nav .links a {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--potion-green); }
+
+  /* HERO */
+  header.hero {
+    padding: 100px 0 80px;
+    position: relative;
+  }
+  .hp-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--potion-green);
+    border: 1px solid var(--potion-green);
+    padding: 6px 12px;
+    border-radius: 3px;
+    margin-bottom: 28px;
+  }
+  .hp-tag .dot {
+    width: 6px; height: 6px;
+    background: var(--potion-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--potion-green);
+    animation: blink 1.6s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1.name {
+    font-size: clamp(38px, 7vw, 62px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+  }
+  h1.name .accent {
+    background: linear-gradient(90deg, var(--potion-green), var(--potion-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p.role {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 34px;
+  }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-primary {
+    background: var(--potion-green);
+    color: #0d0c17;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px #3ddc9744; }
+  .btn-ghost {
+    border: 1px solid var(--line);
+    color: var(--text);
+  }
+  .btn-ghost:hover { border-color: var(--potion-purple); color: var(--potion-purple); }
+
+  /* SECTION HEADER — HUD style */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 34px;
+  }
+  .sec-head .bracket {
+    font-size: 12px;
+    color: var(--ember);
+    letter-spacing: 2px;
+  }
+  .sec-head h2 {
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .sec-head::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line), transparent);
+  }
+
+  section { padding: 70px 0; border-bottom: 1px solid var(--bg-alt); }
+
+  /* ABOUT */
+  .about-text { color: var(--muted); max-width: 640px; font-size: 15.5px; }
+  .about-text strong { color: var(--text); font-weight: 600; }
+
+  /* SKILLS */
+  .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 26px; }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .skill-card h3 {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--potion-purple);
+    margin-bottom: 14px;
+  }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: var(--text);
+  }
+
+  /* PROJECTS */
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 26px;
+    margin-bottom: 20px;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .project-card:hover { transform: translateY(-3px); border-color: var(--potion-green); }
+  .project-card .p-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .project-card h3 { font-size: 18px; font-weight: 600; }
+  .p-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ember);
+    white-space: nowrap;
+  }
+  .project-card p.desc { color: var(--muted); font-size: 14.5px; margin-bottom: 14px; }
+  .p-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .p-tags span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--potion-green);
+    border: 1px solid #3ddc9744;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .featured-badge {
+    position: absolute;
+    top: -10px;
+    right: 22px;
+    background: linear-gradient(90deg, var(--potion-purple), var(--pink-bomb));
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    color: #0d0c17;
+    font-weight: 600;
+  }
+
+  /* EDUCATION */
+  .edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--bg-alt);
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-item .school { font-weight: 600; }
+  .edu-item .degree { color: var(--muted); font-size: 13.5px; display: block; margin-top: 2px; }
+  .edu-item .score { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--potion-green); white-space: nowrap; }
+
+  /* CONTACT / FOOTER */
+  footer { padding: 80px 0 60px; text-align: center; }
+  footer h2 { font-size: 28px; margin-bottom: 14px; }
+  footer p { color: var(--muted); margin-bottom: 30px; }
+  .contact-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .contact-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 13.5px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-pill:hover { border-color: var(--potion-green); color: var(--potion-green); }
+  .foot-note { margin-top: 50px; font-size: 12px; color: #55516f; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 70px 0 50px; }
+    nav .links { gap: 14px; }
+    nav .links a { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo pixel-font">M.ATHIF</div>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="hp-tag"><span class="dot"></span> AVAILABLE FOR PLACEMENT — 2027</div>
+  <h1 class="name">Muhammad <span class="accent">Athif</span></h1>
+  <p class="role">Electronics &amp; Communication Engineering student who builds things that sit at the edge of hardware, code, and play — from IoT systems to a solo-shipped arcade game.</p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="bracket pixel-font">[01]</span>
+      <h2>About</h2>
+    </div>
+    <p class="about-text">
+      I'm a final-year <strong>ECE student</strong> at Govt. Model Engineering College, Kochi, with a hands-on interest in <strong>embedded systems, IoT, and game development</strong>. I like projects where hardware and software meet — wiring a microcontroller to a live web interface, or scripting the mechanics of a game from scratch. Outside of coursework, I build small things end-to-end: two terminal-based games in Python, and <strong>Potion Panic</strong>, a Unity arcade game I designed, built, and published solo.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="bracket pixel-font">[02]</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <h3>Languages &amp; Tools</h3>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">C#</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Systems &amp; Platforms</h3>
+        <div class="tag-row">
+          <span class="tag">Embedded Systems</span>
+          <span class="tag">ESP32 / Arduino</span>
+          <span class="tag">Unity</span>
+          <span class="tag">Data Structures &amp; Algorithms</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Working Style</h3>
+        <div class="tag-row">
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Teamwork</span>
+          <span class="tag">Adaptability</span>
+          <span class="tag">Critical Thinking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="bracket pixel-font">[03]</span>
+      <h2>Projects</h2>
+    </div>
+
+    <div class="project-card">
+      <span class="featured-badge">Published</span>
+      <div class="p-top">
+        <h3>Potion Panic</h3>
+        <span class="p-meta">Unity · Solo · 2 months</span>
+      </div>
+      <p class="desc">A Fruit Ninja–style arcade game where potions rise from the bottom of the screen and players must collect them while avoiding bombs. Designed and built entirely solo — mechanics, 3D models, sound, and menus — and published live on itch.io.</p>
+      <div class="p-tags"><span>Unity</span><span>C#</span><span>Game Design</span><span>3D Modeling</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="p-top">
+        <h3>WiFi Based Medicine Retrieval System</h3>
+        <span class="p-meta">Team of 4 · 4 months</span>
+      </div>
+      <p class="desc">An IoT-based system letting users request medicines through a web platform, with an ESP32 and LCD display showing real-time medicine location and information. Led the hardware integration — configuring the ESP32 and interfacing it with the LCD.</p>
+      <div class="p-tags"><span>ESP32</span><span>IoT</span><span>HTML/CSS/JS</span><span>Embedded Systems</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="p-top">
+        <h3>Connect 4</h3>
+        <span class="p-meta">Python · Solo</span>
+      </div>
+      <p class="desc">A terminal-based Connect 4 game with a grid-based board system, turn-based logic, and win-condition checks across horizontal, vertical, and diagonal alignments.</p>
+      <div class="p-tags"><span>Python</span><span>Logic &amp; Algorithms</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="p-top">
+        <h3>Tic-Tac-Toe</h3>
+        <span class="p-meta">Python · Solo</span>
+      </div>
+      <p class="desc">A terminal-based two-player Tic-Tac-Toe game with board-state tracking, turn management, and win/draw detection logic.</p>
+      <div class="p-tags"><span>Python</span><span>Logic &amp; Algorithms</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="bracket pixel-font">[04]</span>
+      <h2>Education</h2>
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <span class="school">Govt. Model Engineering College</span>
+        <span class="degree">KTU · B.Tech in Electronics and Communication Engineering</span>
+      </div>
+      <span class="score">7.05 CGPA · Exp. 2027</span>
+    </div>
+    <div class="edu-item">
+      <div>
+        <span class="school">MES Raja Residential School</span>
+        <span class="degree">CBSE · 12th</span>
+      </div>
+      <span class="score">93% · 2023</span>
+    </div>
+    <div class="edu-item">
+      <div>
+        <span class="school">MES Indian School, Doha, Qatar</span>
+        <span class="degree">CBSE · 10th</span>
+      </div>
+      <span class="score">92.6% · 2021</span>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p>Open to placement opportunities in embedded systems, software, and game development.</p>
+    <div class="contact-row">
+      <a class="contact-pill" href="mailto:muhammadathif.mec@gmail.com">✉ muhammadathif.mec@gmail.com</a>
+      <a class="contact-pill" href="tel:+919037011725">☎ +91 90370 11725</a>
+      <a class="contact-pill" href="#">in LinkedIn</a>
+    </div>
+    <p class="foot-note mono">Muhammad Athif — built with intent, not a template.</p>
+  </div>
+</footer>
+
+</body>
+</html>
